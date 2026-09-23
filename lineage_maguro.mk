@@ -20,6 +20,7 @@ TARGET_BOOTANIMATION_HALF_RES := true
 
 # The Go profile sets ro.config.low_ram and the Go package set.
 $(call inherit-product, vendor/lineage/config/common_mini_go_phone.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 $(call inherit-product, device/samsung/maguro/device.mk)
 
