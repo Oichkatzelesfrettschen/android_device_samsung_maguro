@@ -23,6 +23,11 @@ $(call inherit-product, vendor/lineage/config/common_mini_go_phone.mk)
 
 $(call inherit-product, device/samsung/maguro/device.mk)
 
+# microG instead of Google apps; WITH_MICROG=false leaves it out.
+ifneq ($(WITH_MICROG),false)
+$(call inherit-product, vendor/microg/microg.mk)
+endif
+
 PRODUCT_DEVICE := maguro
 PRODUCT_NAME := lineage_maguro
 PRODUCT_BRAND := google
