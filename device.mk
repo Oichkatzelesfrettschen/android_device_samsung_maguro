@@ -1,4 +1,5 @@
-# Copyright (C) 2011 The Android Open Source Project
+#
+# Copyright (C) 2011 The Android Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,18 +12,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-# This file includes all definitions that apply only to maguro devices
 #
-# Anything that is generic to all tuna products should go in the tuna directory
-#
-# Everything in this directory will become public
 
-DEVICE_PACKAGE_OVERLAYS := device/samsung/maguro/overlay
+# GSM variant (GT-I9250): XMM6260 HSPA modem, SiRF GSD4t GPS.
 
-# These are the hardware-specific features
-PRODUCT_COPY_FILES := \
-	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
+DEVICE_PACKAGE_OVERLAYS += device/samsung/maguro/overlay
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
+    device/samsung/tuna/etc/wifi/bcmdhd.maguro.cal:$(TARGET_COPY_OUT_SYSTEM)/etc/wifi/bcmdhd.cal
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.subdevice=maguro
 
 $(call inherit-product, device/samsung/tuna/device.mk)
-$(call inherit-product-if-exists, vendor/samsung/maguro/maguro-vendor.mk)
+$(call inherit-product, vendor/samsung/maguro/maguro-vendor.mk)

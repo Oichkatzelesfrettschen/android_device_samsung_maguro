@@ -1,9 +1,6 @@
-#
-# system.prop for maguro
-#
-rild.libpath=/system/lib/libsecril-shim.so
+# RIL: the tuna shim wraps libsec-ril.so on the XMM6260 IPC channel
+rild.libpath=/vendor/lib/libsecril-shim.so
 rild.libargs=-d /dev/ttys0 --
 telephony.lteOnCdmaDevice=0
-
-# Ril sends only one RIL_UNSOL_CALL_RING, so set call_ring.multiple to false
-ro.telephony.call_ring.multiple=0
+ro.telephony.call_ring.multiple=false
+ro.telephony.default_network=0

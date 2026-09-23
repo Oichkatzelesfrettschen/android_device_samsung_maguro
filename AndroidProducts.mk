@@ -15,5 +15,8 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_maguro.mk \
-    $(LOCAL_DIR)/full_maguro.mk
+    $(LOCAL_DIR)/lineage_maguro.mk
+
+COMMON_LUNCH_CHOICES := \
+    lineage_maguro-userdebug \
+    lineage_maguro-user
