@@ -18,6 +18,10 @@ TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 TARGET_BOOTANIMATION_HALF_RES := true
 
+# Product overlay order takes the first matching resource. The tuna wallpaper
+# must precede Lineage's common xhdpi wallpaper in framework-res.
+PRODUCT_PACKAGE_OVERLAYS += device/samsung/tuna/product-overlay
+
 # The Go profile sets ro.config.low_ram and the Go package set.
 $(call inherit-product, vendor/lineage/config/common_mini_go_phone.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
