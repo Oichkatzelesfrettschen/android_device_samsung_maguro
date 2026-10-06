@@ -22,7 +22,12 @@ TARGET_BOOTANIMATION_HALF_RES := true
 # must precede Lineage's common xhdpi wallpaper in framework-res.
 PRODUCT_PACKAGE_OVERLAYS += device/samsung/tuna/product-overlay
 
-# The Go profile sets ro.config.low_ram and the Go package set.
+# go_defaults.mk carries the Go runtime profile: ro.config.low_ram,
+# speed-profile system_server, NetworkStack and Tethering inside
+# system_server, and go_handheld_core_hardware.xml. LineageOS's
+# common_mini_go_phone.mk only sets PRODUCT_TYPE := go, which selects the Go
+# launcher (vendor/lineage/config/common_mobile.mk).
+$(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
 $(call inherit-product, vendor/lineage/config/common_mini_go_phone.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
@@ -32,6 +37,13 @@ $(call inherit-product, device/samsung/maguro/device.mk)
 ifneq ($(WITH_MICROG),false)
 $(call inherit-product, vendor/microg/microg.mk)
 endif
+
+# go_defaults_common.prop sets dalvik.vm.heapgrowthlimit=128m in
+# system/build.prop over the phone-xhdpi-1024 96m default, and a second
+# system value fails post_process_props.py as a duplicate. Init loads
+# product/etc/build.prop after the system one and takes its value.
+PRODUCT_PRODUCT_PROPERTIES += \
+    dalvik.vm.heapgrowthlimit=96m
 
 PRODUCT_DEVICE := maguro
 PRODUCT_NAME := lineage_maguro
