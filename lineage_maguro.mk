@@ -52,7 +52,7 @@ PRODUCT_MODEL := Galaxy Nexus
 PRODUCT_MANUFACTURER := samsung
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=yakju \
-    PRIVATE_BUILD_DESC="yakju-user 4.3 JWR66Y 776638 release-keys"
+    BuildDesc="yakju-user 4.3 JWR66Y 776638 release-keys" \
+    BuildFingerprint=google/yakju/maguro:4.3/JWR66Y/776638:user/release-keys
 
 BUILD_FINGERPRINT := google/yakju/maguro:4.3/JWR66Y/776638:user/release-keys
